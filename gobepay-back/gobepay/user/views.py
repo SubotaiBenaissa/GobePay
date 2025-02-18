@@ -1,4 +1,6 @@
 import stripe
+import os
+from dotenv import load_dotenv
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -6,6 +8,8 @@ from user.models import User
 from user.serializers import UserRegisterSerializer
 
 # Create your views here.
+load_dotenv()
+stripe.api_key = os.environ['STRIPE_KEY']
 
 class RegisterView(APIView):
     
