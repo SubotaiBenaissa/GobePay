@@ -17,7 +17,7 @@ class RegisterView(APIView):
         
         serializer = UserRegisterSerializer(data=request.data)             # Envío el cuerpo de request para el serializador  
         
-        if serializer.is_valid(raise_exception=True):
+        if serializer.is_valid(raise_exception=True):                      # raise_exception para mostrar cualquier error emergente
             
             new_user = serializer.save()
             email_user = serializer.data['email']                          # Se crea el id de stripe a partir del email registrado
