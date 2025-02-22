@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from user.models import User
 from user.serializers import UserRegisterSerializer
+from wallet.models import Wallet
 
 # Create your views here.
 load_dotenv()
@@ -14,6 +15,9 @@ stripe.api_key = os.environ['STRIPE_KEY']
 class RegisterView(APIView):
     
     def post(self, request):
+        
+        wallet = Wallet(balance=0)
+        wallet.save()
         
         serializer = UserRegisterSerializer(data=request.data)             # Envío el cuerpo de request para el serializador  
         
@@ -25,6 +29,7 @@ class RegisterView(APIView):
             id_user_stripe = user_stripe.id                                # Extraigo el id del nuevo usuario creado de stripe
             user = User.objects.get(pk=new_user.id)                        # Extraigo el id del usuario que es su pk
             user.id_user_stripe = id_user_stripe                           # El id creado en stripe se asigna al id en la BD
+            user.wallet = wallet                                           # Se asocia la wallet al usuario correspondiente              
             user.save()                                                    # Se guarda el nuevo user
             
             return Response(serializer.data, status=status.HTTP_200_OK)

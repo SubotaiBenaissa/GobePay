@@ -94,6 +94,9 @@ coverage.xml
 # celery 
 celerybeat-schedule.* 
 
+# BD
+db.sqlite3
+
 # SageMath parsed files 
 *.sage.py 
 
