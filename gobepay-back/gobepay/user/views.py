@@ -39,7 +39,7 @@ class RegisterView(APIView):
     
 class UserMeView(APIView):
     
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]                                 # Sólo si está autenticado se ejecuta
     
     def get(self, request):
         

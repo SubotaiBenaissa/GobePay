@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from user.models import User
+from wallet.serializers import WalletSerializer
 
 class UserRegisterSerializer(serializers.ModelSerializer):
     
@@ -18,6 +19,8 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         return instance                                     # Se devuelve la nueva instancia del modelo
     
 class UserSerializer(serializers.ModelSerializer):
+    
+    wallet = WalletSerializer()                             # Asociar wallet al usuario
     
     class Meta: 
         
