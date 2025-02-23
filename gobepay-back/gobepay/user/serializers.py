@@ -33,3 +33,10 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         
         model = User
         fields = ['email', 'password', 'first_name', 'last_name']
+        
+class UsersInfoSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'username']

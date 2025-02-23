@@ -1,13 +1,14 @@
 import stripe
 import os
 from dotenv import load_dotenv
+from django.db.models import Q
 from django.contrib.auth.hashers import make_password
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from user.models import User
-from user.serializers import UserRegisterSerializer, UserSerializer, UserUpdateSerializer
+from user.serializers import UserRegisterSerializer, UserSerializer, UserUpdateSerializer, UsersInfoSerializer
 from wallet.models import Wallet
 
 # Create your views here.
@@ -59,4 +60,29 @@ class UserMeView(APIView):
         serializer.save()
         
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class UserPublicInfo(APIView):
+    
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request): 
+        
+        search_query = request.query_params.get('search', None)
+        
+        if search_query:
+            
+            users = User.objects.filter(
+                Q(first_name__icontains=search_query) |                    # Q es una librería de django para filtros combinados
+                Q(last_name__icontains=search_query) |
+                Q(username__icontains=search_query)
+            )
+            
+        else: 
+            
+            users = User.objects.all()
+            
+        serializer = UsersInfoSerializer(users, many=True)        
+        
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        
         
