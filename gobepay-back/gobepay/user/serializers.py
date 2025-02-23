@@ -16,3 +16,10 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             instance.set_password(password)                 # Se hashea la contraseña
         instance.save()                                     # Se guarda la contraseña hasheada
         return instance                                     # Se devuelve la nueva instancia del modelo
+    
+class UserSerializer(serializers.ModelSerializer):
+    
+    class Meta: 
+        
+        model = User
+        fields = ['id', 'email', 'username', 'first_name', 'last_name', 'date_joined', 'wallet']
