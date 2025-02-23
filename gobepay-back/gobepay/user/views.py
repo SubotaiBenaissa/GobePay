@@ -1,12 +1,13 @@
 import stripe
 import os
 from dotenv import load_dotenv
+from django.contrib.auth.hashers import make_password
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from user.models import User
-from user.serializers import UserRegisterSerializer, UserSerializer
+from user.serializers import UserRegisterSerializer, UserSerializer, UserUpdateSerializer
 from wallet.models import Wallet
 
 # Create your views here.
@@ -45,3 +46,17 @@ class UserMeView(APIView):
         
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
+    
+    def put(self, request):
+        
+        if 'password' in request.data:
+            
+            password = request.data['password']
+            request.data['password'] = make_password(password)             # Se encripta la contraseña cambiada
+            
+        serializer = UserUpdateSerializer(request.user, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        
