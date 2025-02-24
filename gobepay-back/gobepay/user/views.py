@@ -72,7 +72,7 @@ class UserPublicInfo(APIView):
         if search_query:
             
             users = User.objects.filter(
-                Q(first_name__icontains=search_query) |                    # Q es una librería de django para filtros combinados
+                Q(first_name__icontains=search_query) |                    # Q es una librería de django para filtros combinados por operadores lógicos
                 Q(last_name__icontains=search_query) |
                 Q(username__icontains=search_query)
             )
@@ -84,5 +84,23 @@ class UserPublicInfo(APIView):
         serializer = UsersInfoSerializer(users, many=True)        
         
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class UserByID(APIView): 
+    
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request, user_id):
+        
+        try:
+            
+            user = User.objects.get(id=user_id)
+            serializer = UsersInfoSerializer(user)
+            return Response(serializer.data, status=status.HTTP_200_OK)     
+        
+        except User.DoesNotExist:
+            
+            return Response({f'error: el usuario con id {user_id} no existe'}, status=status.HTTP_404_NOT_FOUND)
+            
+             
         
         
