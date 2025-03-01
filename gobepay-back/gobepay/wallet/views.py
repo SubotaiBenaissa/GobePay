@@ -44,9 +44,9 @@ class SendMoneyView(APIView):
         wallet.balance = float(wallet.balance) - float(request.data['amount'])
         wallet.save()
         
-        user_dest = User.objects.get(pk=request.data['userId'])
+        user_dest = User.objects.get(pk=request.data['userID'])
         wallet_dest = Wallet.objects.get(pk=user_dest.wallet_id)
-        wallet_dest = float(wallet_dest.balance) + float(request.data['amount'])
+        wallet_dest.balance = float(wallet_dest.balance) + float(request.data['amount'])
         wallet_dest.save()
         
         return Response('OK', status=status.HTTP_200_OK)
