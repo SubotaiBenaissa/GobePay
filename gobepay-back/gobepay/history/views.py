@@ -21,7 +21,7 @@ class HistoryModelViewSet(ModelViewSet):
         limit = self.request.query_params.get('limit', None)
         queryset = queryset.filter(
             Q(origin_user = self.request.user) |
-            Q()
+            Q(target_user = self.request.user)
         )
         queryset = queryset.order_by('-created_at')
         
