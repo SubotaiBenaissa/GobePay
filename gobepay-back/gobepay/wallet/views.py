@@ -59,4 +59,14 @@ class SendMoneyView(APIView):
         wallet_dest.balance = float(wallet_dest.balance) + float(request.data['amount'])
         wallet_dest.save()
         
+        history = History(
+            type="send_money",
+            origin_user=self.request.user,
+            target_user=user_dest,
+            amount=request.data['amount'],
+            message=request.data['message']
+        )
+        
+        history.save()
+        
         return Response('OK', status=status.HTTP_200_OK)
