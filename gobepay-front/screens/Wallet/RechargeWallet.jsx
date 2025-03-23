@@ -1,13 +1,12 @@
 import { View, Text } from 'react-native'
-import { styles } from './HomeScreen.styles'
 import React from 'react'
 
-export default function HomeScreen() {
+export default function RechargeWallet() {
 
     return (
         <View>
-            <Text>HomeScreen</Text>
+            <Text>RechargeWallet</Text>
         </View>
     )
-
+    
 }
