@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import { styles } from './SendMoneyUserScreen.styles'
 
-export default function SendMoneyUserScreen() {
+export const SendMoneyUserScreen = () => {
 
     return (
         <View>

@@ -18,7 +18,7 @@ const wallet = {
     root: "WalletRoot",
     walletScreen: "WalletScreen",
     amountRechargeScreen: "AmountRechargeScreen",
-    rechargeScreen: "RechargeScreen"
+    rechargeWallet: "RechargeWallet"
 }
 
 const account = {
@@ -31,7 +31,7 @@ const account = {
 
 const global = {
     root: "GlobalRoot",
-    sendMoneyUser
+    sendMoneyUserScreen: "SendMoneyUserScreen"
 }
 
 export const screens = {

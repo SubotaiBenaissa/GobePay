@@ -2,20 +2,16 @@ import { ThemeProvider } from '@rneui/themed';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Demo } from './components/Demo';
 import { lightTheme, darkTheme } from './themes';
+import { AppNavigation } from './navigation';
 import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
   return (
-    <ThemeProvider theme={ darkTheme }>
+    <ThemeProvider theme={ lightTheme }>
       <SafeAreaProvider>
         <NavigationContainer>
-          <View style={styles.container}>
-            <Text>Open up App.js</Text>
-            <Demo />
-            <StatusBar style="auto" />
-          </View>
+          <AppNavigation />
         </NavigationContainer>
       </SafeAreaProvider>
     </ThemeProvider>

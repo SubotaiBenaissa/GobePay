@@ -18,7 +18,7 @@ export function AuthStack() {
             <Stack.Screen 
                 name={ screens.auth.registerScreen }
                 component={ RegisterScreen }
-                options={{ title: '' }}
+                options={{ title: 'Registro de usuario' }}
             />
         </Stack.Navigator>
     )

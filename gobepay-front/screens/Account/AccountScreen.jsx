@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function AccountScreen() {
+export const AccountScreen = () => {
 
     return (
         <View>

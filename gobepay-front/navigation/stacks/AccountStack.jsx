@@ -9,7 +9,7 @@ import { screens } from "../../utils"
 
 const Stack = createNativeStackNavigator()
 
-export default function AccountStack() {
+export const AccountStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen 

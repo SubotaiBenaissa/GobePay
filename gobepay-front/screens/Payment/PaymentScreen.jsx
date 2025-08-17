@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
-import { styles } from './PaymentScreen.Styles'
+import { styles } from './PaymentScreen.styles'
 
-export default function PaymentScreen() {
+export const PaymentScreen = () => {
 
     return (
         <View>

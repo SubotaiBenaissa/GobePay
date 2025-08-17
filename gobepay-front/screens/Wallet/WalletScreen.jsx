@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import { styles } from './WalletScreen.styles'
 
-export default function WalletScreen() {
+export const WalletScreen = () => {
 
     return (
         <View>

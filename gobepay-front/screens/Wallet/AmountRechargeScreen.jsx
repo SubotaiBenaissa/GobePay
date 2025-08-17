@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import { styles } from "./AmountRechargeScreen.styles"
 
-export default function amountRechargeScreen() {
+export const AmountRechargeScreen = () => {
 
     return (
         <View>
