@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator();
 
 export const AppNavigation = () => {
 
-    const user = "usuario"
+    const user = null
 
     if (!user) {
         return (

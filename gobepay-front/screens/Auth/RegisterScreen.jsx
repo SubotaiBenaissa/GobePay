@@ -1,12 +1,13 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import { Layout } from '../../layouts'
+import { RegisterForm } from "../../components/Auth"
 
 export const RegisterScreen = () => {
 
     return (
-        <View>
-            <Text>RegisterScreen</Text>
-        </View>
+        <Layout.Auth>
+            <RegisterForm />
+        </Layout.Auth>
     )
     
 }

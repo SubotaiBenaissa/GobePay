@@ -1,12 +1,16 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import { Layout } from "../../layouts"
+import { useNavigation } from "@react-navigation/native"
+import { screens } from "../../utils"
 
 export const LoginScreen = () => {
 
+    const { navigate } = useNavigation();
+
     return (
-        <View>
-            <Text>LoginScreen</Text>
-        </View>
+        <Layout.Auth>
+            <Text onPress={ () => navigate(screens.auth.registerScreen) }>LoginScreen</Text>
+        </Layout.Auth>
     )
     
 }
