@@ -2,6 +2,7 @@ import { View } from "react-native"
 import { Input, Button } from "@rneui/themed"
 import { useFormik } from "formik"
 import { Separator } from "../../Shared"
+import { authControl } from "../../../api"
 import { initialValues, validationSchema } from "./RegisterForm.form"
 
 export const RegisterForm = () => {
@@ -11,7 +12,14 @@ export const RegisterForm = () => {
         validationSchema: validationSchema(),
         validateOnChange: false,
         onSubmit: async ( formValue ) => {
-            console.log(formValue)
+            try {
+                await authControl.register(
+                    formValue.email, 
+                    formValue.password, 
+                )
+            } catch (error) {
+                console.error(error)
+            }
         }
     })
 
