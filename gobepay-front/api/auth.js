@@ -1,6 +1,6 @@
 import { ENV } from "../utils";
 
-async function register(email, password) {
+async function register(username, email, password) {
     
     const url = `${ENV.API_URL}/${ENV.ENDPOINT.AUTH.REGISTER}`;
     const params = {
@@ -8,7 +8,7 @@ async function register(email, password) {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ username, email, password })
     };
 
     const response = await fetch(url, params);
@@ -19,6 +19,26 @@ async function register(email, password) {
 
 }
 
+async function login(email, password) {
+
+    const url = `${ENV.API_URL}/${ENV.ENDPOINT.AUTH.LOGIN}/`;
+    const params = {
+        method: "POST", 
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+    };
+
+    const response = await fetch(url, params);
+
+    if (!response.ok) throw response;   
+
+    return await response.json();
+
+}
+
 export const authControl = {
-    register
+    register,
+    login
 }
